@@ -1,13 +1,25 @@
-// ==== Lấy phần tử ====
-const nextBtn = document.getElementById("nextBtn");
-const page1   = document.getElementById("page1");
-const page2   = document.getElementById("page2");
+// ===== SNOW =====
+function createSnow() {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.animationDuration = 3 + Math.random() * 5 + "s";
+    snow.style.opacity = Math.random();
+    snow.style.transform = `scale(${Math.random()})`;
 
-// ==== Sự kiện bấm nút "Sẵn Sàng" ====
-nextBtn.addEventListener("click", () => {
-    // Ẩn trang 1
-    page1.classList.remove("active");
+    document.body.appendChild(snow);
 
-    // Hiện trang 2 (ảnh quà)
-    page2.classList.add("active");
+    setTimeout(() => {
+        snow.remove();
+    }, 8000);
+}
+
+setInterval(createSnow, 150);
+
+// ===== MUSIC =====
+const music = new Audio("music.mp3"); // đổi tên file nếu khác
+music.loop = true;
+
+document.getElementById("readyBtn").addEventListener("click", () => {
+    music.play();
 });
